@@ -11,5 +11,3 @@ $jsonTest = json_encode($result);
 
 echo "document.getElementById('id_fileList').textContent=".$jsonTest.";";
  ?>
-
-
