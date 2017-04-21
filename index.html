@@ -62,7 +62,7 @@ font-size:140%;
 <table  class = "imageHeader">
 <tr>
   <div class = "tableTitle_1" id = "top_title"><p><h2>柏たなか農園<br>太陽電池駆動IoTによる田んぼウオッチ・プロジェクト</></div>
-   柏たなかのもちむぎ田んぼ。毎日の成長をいつでもどこでも観察できます</p>
+   柏たなかのもちむぎ田んぼ。毎日の成長をいつでもどこでも観察できます。閲覧方法は三つあります。</p>
    <a href="https://ambidata.io/ch/channel.html?id=999">現地の気象データ／グラフ表示はこちら</a>
 <div class = "titleImage" >
 <td><a href="img/tanaka_Panorama.jpg "><img src="img/tanaka_Panorama.jpg" height =140 alt=""></a></td>
@@ -72,7 +72,7 @@ font-size:140%;
 </tr> </table>
 
  <form action="showDailyPicts.php" method="post"
-      <label><h2>日付別撮影データ閲覧</h2> 表示したい日付を指定してください：</label>
+      <label><h2>【１】日付別撮影データ閲覧</h2> 表示したい日付を指定してください：</label>
     <input name="showdate" id="datepicker" type="text" />
     <input type="submit" name="display" value="写真表示"></form>
  <script>
@@ -89,7 +89,7 @@ font-size:140%;
 収録写真を閲覧します。日にちを指定して過去の写真も確認できます。
 1日分の撮影済み写真が一覧できます。<br>
 
-<h2><a href="testHTML_callPHP_3_withSliderbyHourSlice_v5.html">柏たなかのもちむぎ成長記録スライドショー</a><p></h2>
+<h2><a href="testHTML_callPHP_3_withSliderbyHourSlice_v5.html">【２】柏たなかのもちむぎ成長記録スライドショー</a><p></h2>
   <p>
     4月20日から撮影し続けた写真をスライドショーで閲覧します。<br>表示方法を工夫し、現在はバージョン5のブラウザが動作しています｡
   </>
@@ -100,14 +100,13 @@ font-size:140%;
     モバイル通信ネットワークなど、スピードが遅い環境で使っていると写真の表示が追いつかず、撮影時刻表示と同期しないという不都合がおきることがあります｡画像の送出間隔を変更できるようにしてありますので、お使いください。<br>
     <br>
     画面下にあるスライダーを左右に動かして、再生速度を変えてください｡300ミリ秒から2000ミリ秒まで指定できます。再生中に操作すると表示速度がリアルタイムに変化します。<br>
-<br><br>
-
+<h2>■■■　スライドショーの操作画面説明　　■■■</h2>
 <img src="img/slideShow_help.jpg" width=900>
 
 <br><br>
 
 <form action="showCapturedPicts.php" method="post"
-      <label><h2>電源投入時テスト撮影</h2> 表示したい日付を指定：</label>
+      <label><h2>【３】電源投入時テスト撮影</h2> 表示したい日付を指定：</label>
     <input name="showdate" id="datepicker2" type="text" />
     <input type="submit" name="display" value="写真表示"></form>
 
