@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+
+<meta name = "viewport" content="width = 900">
+<style>
+  .tableTitle_1 {
+font-size:140%;
+
+}
+
+.imageHeader tr {
+
+  height: 10px;
+}
+
+.titleImage  {
+  width: 10px;
+}
+
+.bunner {
+  height: 10px;
+}
+    /* Datepicker のフォントサイズを小さくする */
+    div.ui-datepicker {
+        font-size: 70%;
+    }
+    #dummy {
+        height:10px;
+    }
+</style>
+
+<script type="text/javascript"><!--
+
+   // 当日の日付を取得する関数。y+m+dで動くはずだが、
+   //なぜか、数値の和になってしまうので明示的にString()を使って結合した｡
+   function pDate(){
+            dt = new Date();
+            y = dt.getFullYear();
+            m  = dt.getMonth() + 1;
+             if (m < 10) { m = "0" + m; };
+            d  = dt.getDate();
+            if (d < 10) { d = "0" + d; };
+            document.getElementById("datepicker").value=String(y)+String(m)+String(d);
+            document.getElementById("datepicker2").value=String(y)+String(m)+String(d);
+        }
+
+
+ // -->> </script>
+
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/ui-lightness/jquery-ui.css">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<title>柏たなか農園　田んぼウオッチ総合ページ</title>
+
+
+</head>
+<body onload="pDate()">
+
+<table  class = "imageHeader">
+<tr>
+  <div class = "tableTitle_1" id = "top_title"><p><h2>柏たなか農園<br>太陽電池駆動IoTによる田んぼウオッチ・プロジェクト</></div>
+   柏たなかのもちむぎ田んぼ。毎日の成長をいつでもどこでも観察できます。閲覧方法は三つあります。</p>
+   <a href="https://ambidata.io/ch/channel.html?id=999" target="_blank">現地の気象データ／グラフ表示はこちら</a>
+<div class = "titleImage" >
+<td><a href="img/tanaka_Panorama.jpg "><img src="img/tanaka_Panorama.jpg" height =140 alt=""></a></td>
+<td><a href="img/camera.jpg"><img src="img/camera.jpg" height =140 alt=""></td>
+<td><a href="img/mochimugi.jpg"><img src="img/mochimugi.jpg" height =140 alt=""></td>
+</div>
+</tr> </table>
+
+ <form action="showDailyPicts.php" method="post"
+      <label><h2>【１】日付別撮影データ閲覧</h2> 表示したい日付を指定してください：</label>
+    <input name="showdate" id="datepicker" type="text" />
+    <input type="submit" name="display" value="写真表示"></form>
+ <script>
+      (function(){
+  $("#datepicker").datepicker({
+    dateFormat: 'yymmdd',
+    monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    dayNames: ['日', '月', '火', '水', '木', '金', '土'],
+    dayNamesMin: ['日', '月', '火', '水', '木', '金', '土']
+  });
+})();
+    </script>
+
+収録写真を閲覧します。日にちを指定して過去の写真も確認できます。
+1日分の撮影済み写真が一覧できます。<br>
+
+<h2><a href="testHTML_callPHP_3_withSliderbyHourSlice_v5.html">【２】柏たなかのもちむぎ成長記録スライドショー</a><p></h2>
+  <p>
+    4月20日から撮影し続けた写真をスライドショーで閲覧します。<br>表示方法を工夫し、現在はバージョン5のブラウザが動作しています｡
+  </>
+
+スライドショーは指定した特定の日にちの1日分、指定した日付から最終日まで同一時刻の写真を並べた「横切り」タイムラプス画像を確認することができます。
+    動作中でも日付や時刻指定は変更できます｡リアルタイムに反映されます｡<br><br>
+
+    モバイル通信ネットワークなど、スピードが遅い環境で使っていると写真の表示が追いつかず、撮影時刻表示と同期しないという不都合がおきることがあります｡画像の送出間隔を変更できるようにしてありますので、お使いください。<br>
+    <br>
+    画面下にあるスライダーを左右に動かして、再生速度を変えてください｡300ミリ秒から2000ミリ秒まで指定できます。再生中に操作すると表示速度がリアルタイムに変化します。<br>
+<h2>■■■　スライドショーの操作画面説明　■</h2>
+<img src="img/slideShow_help.jpg" width=900>
+
+<br><br>
+
+<form action="showCapturedPicts.php" method="post"
+      <label><h2>【３】電源投入時テスト撮影</h2> 表示したい日付を指定：</label>
+    <input name="showdate" id="datepicker2" type="text" />
+    <input type="submit" name="display" value="写真表示"></form>
+
+<script>
+      (function(){
+  $('#datepicker2').datepicker({
+    dateFormat: 'yymmdd',
+    monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    dayNames: ['日', '月', '火', '水', '木', '金', '土'],
+    dayNamesMin: ['日', '月', '火', '水', '木', '金', '土']
+  });
+})();
+    </script>
+
+<p>電源投入時点のテスト映像を確認します。日にちを指定して、過去のデータも確認できます。<br>
+  5時から19時までの営業時間内に電源投入、次回の撮影時（正時）までに8分以上間隔があれば、テスト撮影します。<br>
+  7分以内であれば、正時の撮影時間を待ちます。
+</><br>
+<a href="http://mochimugi.sakura.ne.jp/IM/im_build/page33.html" target="_blank">■■過去の全生データ、動作確認はこちら■■</a>
+
+<br><br>
+    お気付きの不都合などがありましたら、<br>
+    <a href="mailto:haya@mochimugi.sakura.ne.jp">haya@mochimugi.sakura.ne.jp</a> <br>
+    にメールをお送りください｡<br>
+  </>
+</body>
+</html>
