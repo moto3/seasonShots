@@ -1,7 +1,7 @@
-<?php echo "<h1>定時撮影画像一覧　　<button type='button' onclick='history.back()'>トップページに戻る</button></h1>";
+<?php echo "<h1>指定日の撮影画像一覧　　<button type='button' onclick='history.back()'>トップページに戻る</button></h1>";
 $reqDate = $_POST['showdate'];
 
-  foreach(glob(rtrim("./daily_timelapse/*".$reqDate."*.jpg")) as $file) { //add poceeding wildcard
+  foreach(glob(rtrim("./daily_timelapse/*".$reqDate."*.jpg")) as $file) { //added poceeding wildcard
     $result[] = $file;
 }
 $numberOfPictures = count($result);
