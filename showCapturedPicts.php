@@ -1,4 +1,4 @@
-<?php echo "<h1>電源投入時テスト画像一覧　　<button type='button' onclick='history.back()'>トップページに戻る</button></h1>";
+<?php echo "<h1>電源投入時テスト画像一覧　　<button type='button' onclick='history.back()'>元のページに戻る</button></h1>";
 $reqDate = $_POST['showdate'];
 
   foreach(glob(rtrim("./daily_timelapse/電源投入時テスト_".$reqDate."*.jpg")) as $file) {
@@ -21,7 +21,7 @@ for ($i = $numberOfPictures; $i > -1; $i--) {
     echo "<img src=".$result[$i]." width = '95%'></a>";
     echo "<br><br>";
  }
-   echo "<button type='button' onclick='history.back()'>トップページに戻る</button>";
+   echo "<button type='button' onclick='history.back()'>元のページに戻る</button>";
 
    echo "</body></html>";
 
