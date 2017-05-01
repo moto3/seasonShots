@@ -13,7 +13,7 @@ echo "-->";
 echo "</style>";
    echo "</head>";
   echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の電源投入時テスト画像：".$numberOfPictures."枚ありました<p>";
-for ($i = 0; $i < $numberOfPictures; $i++) {
+for ($i = $numberOfPictures; $i > -1; $i--) {
     echo "<a href=";
     echo $result[$i];
     echo ">";
