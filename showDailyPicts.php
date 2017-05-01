@@ -8,7 +8,7 @@ $numberOfPictures = count($result);
 echo "<!DOCTYPE html><html><head><meta charset='utf-8'>";
 echo "</head>";
 echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の定時撮影画像：".$numberOfPictures."枚ありました<p>";
-for ($i = $numberOfPictures -1; $i > -1; $i--) {
+for ($i = $numberOfPictures -1; $i > -1; $i--) { //表示順を逆にした。最新が上になる
     echo "<a href=";
     echo $result[$i];
     echo ">";
