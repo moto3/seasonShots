@@ -1,5 +1,5 @@
 <?php
-function get_file_list($dir='./daily_taimelapse') {
+function get_file_list($dir='./daily_timelapse') {
     $temp_file = array();
     if ($h_dir = opendir($dir)) {
         while (false !== ($filename = readdir($h_dir))) {
