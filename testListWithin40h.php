@@ -15,5 +15,6 @@ foreach($list as $value){
     if($mod > $expire){
         //chmod($file, 0666);
         print($file);
+        println();
     }
 }
