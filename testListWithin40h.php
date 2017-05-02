@@ -12,7 +12,7 @@ foreach($list as $value){
     $file = $dir . $value;
     if(!is_file($file)) continue;
     $mod = filemtime( $file );
-    if($mod < $expire){
+    if($mod > $expire){
         //chmod($file, 0666);
         print($file);
     }
