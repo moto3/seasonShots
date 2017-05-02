@@ -14,6 +14,7 @@ foreach($list as $value){
     $mod = filemtime( $file );
     if($mod > $expire){
         //chmod($file, 0666);
+        print($expire.PHP_EOL);
         print($mod.PHP_EOL);
         print($file.PHP_EOL);
     }
