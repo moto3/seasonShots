@@ -1,3 +1,4 @@
+<?php
 function get_file_list($dir='./daily_taimelapse') {
     $temp_file = array();
     if ($h_dir = opendir($dir)) {
@@ -16,3 +17,4 @@ function get_file_list($dir='./daily_taimelapse') {
 }
 
 print_r(get_file_list());
+?>
