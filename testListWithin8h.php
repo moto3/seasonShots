@@ -16,7 +16,7 @@ foreach($list as $value){
     $file = $dir . $value;
     if(!is_file($file)) continue;
     $mod = filemtime( $file );
-    if($mod > $expire){
+    if($mod > $expire){ //指定時間よりも新しいものを抽出
         //chmod($file, 0666);
         print($expire.PHP_EOL);
         print($mod.PHP_EOL);
