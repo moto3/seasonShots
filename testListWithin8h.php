@@ -23,3 +23,4 @@ foreach($list as $value){
         print($file.PHP_EOL);
     }
 }
+?>
