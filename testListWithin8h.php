@@ -1,4 +1,8 @@
 <?php
+//http://php-archive.net/php/unlink-old-file/
+//の記事は古いファイルを削除 inlink($file); するというもの
+//今回は確認のためにprintするだけにした
+
 date_default_timezone_set('Asia/Tokyo');
  
 //削除期限
