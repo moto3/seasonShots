@@ -7,7 +7,6 @@ date_default_timezone_set('Asia/Tokyo');
  
 //削除期限
 $expire = strtotime("8 hours ago");
- 
 //ディレクトリ
 $dir = dirname(__FILE__) . '/daily_timelapse/';
  
@@ -18,8 +17,9 @@ foreach($list as $value){
     $mod = filemtime( $file );
     if($mod > $expire){ //指定時間よりも新しいものを抽出
         //chmod($file, 0666);
-        print($expire.PHP_EOL);
-        print($mod.PHP_EOL);
+        print("\$expire = " . $expire.PHP_EOL);
+        echo "$file was last modified at: " . date ("F d Y H:i:s.", $mod);
+        print("\$mod = " . $mod.PHP_EOL);
         print($file.PHP_EOL);
     }
 }
