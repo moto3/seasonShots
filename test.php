@@ -6,7 +6,7 @@
 date_default_timezone_set('Asia/Tokyo');
  
 //削除期限
-$searchDate = strtotime("2017-05-01");
+$searchDate = "2017-05-01";
 //ディレクトリ
 $dir = dirname(__FILE__) . '/daily_timelapse/';
  
