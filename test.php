@@ -6,7 +6,7 @@
 date_default_timezone_set('Asia/Tokyo');
  
 //削除期限
-$expire = strtotime("8 hours ago");
+$expire = strtotime("24 hours ago");
 //ディレクトリ
 $dir = dirname(__FILE__) . '/daily_timelapse/';
  
