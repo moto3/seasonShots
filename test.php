@@ -13,16 +13,16 @@ $dir = dirname(__FILE__) . '/daily_timelapse/';
 $list = scandir($dir);
 echo $list;
 
-// foreach($list as $value){
-//     $file = $dir . $value;
-//     if(!is_file($file)) continue;
-//     $mod = filemtime( $file );
-//     if($mod > $expire){ //指定時間よりも新しいものを抽出
-//         //chmod($file, 0666);
-//         print("\$expire = " . $expire.PHP_EOL);
-//         echo "$file was last modified at: " . date ("F d Y H:i:s.", $mod).PHP_EOL;
-//         print("\$mod = " . $mod.PHP_EOL);
-//         print($file.PHP_EOL);
-//     }
-// }
+foreach($list as $value){
+    $file = $dir . $value;
+    if(!is_file($file)) continue;
+    $mod = filemtime( $file );
+    if($mod > $expire){ //指定時間よりも新しいものを抽出
+        //chmod($file, 0666);
+        print("\$expire = " . $expire.PHP_EOL);
+        echo "$file was last modified at: " . date ("F d Y H:i:s.", $mod).PHP_EOL;
+        print("\$mod = " . $mod.PHP_EOL);
+        print($file.PHP_EOL);
+    }
+}
 ?>
