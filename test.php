@@ -19,8 +19,7 @@ foreach($list as $value){
     if($mod == $searchDate){ //指定日時に一致するものを抽出
         //chmod($file, 0666);
         print("\$searchDate = " . $searchDate .PHP_EOL);
-        echo "$file was last modified at: " . date ("Y-m-d H:i:s.", $mod).PHP_EOL;
-        print("\$mod = " . $mod.PHP_EOL);
+        echo "$file was last modified at: " . $mod.PHP_EOL;
         print($file.PHP_EOL);
     }
 }
