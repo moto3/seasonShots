@@ -12,8 +12,9 @@ foreach($fileList as $value ){
   if($modifiedDate == $reqDate){ //指定日に一致するなら
           echo $file . "was last modified at: " . $modifiedDate .PHP_EOL;
 
-}
+  }
 $result[] = $file;
+}
 
 $numberOfPictures = count($result);
 echo "<!DOCTYPE html><html><head><meta charset='utf-8'>";
