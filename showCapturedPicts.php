@@ -37,8 +37,8 @@ for ($i = $numberOfPictures -1; $i > -1; $i--) {
     echo "<a href=";
     echo $result[$i];
     echo ">";
-    echo substr($result[$i], -16, 4)."年".substr($result[$i], -12, 2)."月".substr($result[$i], -10, 2)."日――".substr($result[$i], -8, 2)."時".substr($result[$i], -6, 2)."分の画像";
-    echo date("  \/Ymd - Hi", filemtime($result[$i]));
+    echo date("Y年m月d日 - H時i分", filemtime($result[$i]));
+//    echo substr($shootingTime, -16, 4)."年".substr($shootingTime, -12, 2)."月".substr($shootingTime, -10, 2)."日――".substr($shootingTime, -8, 2)."時".substr($shootingTime, -6, 2)."分の画像";
     echo "<img src=".$result[$i]." width = '95%'></a>";
     echo "<br><br>";
  }
