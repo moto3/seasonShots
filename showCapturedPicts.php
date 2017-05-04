@@ -17,10 +17,10 @@ foreach($fileList as $value ){
   }
 }
 array_multisort(
-  array_map( 'filemtime', $result[] ),
+  array_map( 'filemtime', $result ),
   SORT_NUMERIC,
   SORT_DESC,
-  $result[]
+  $result
 );
 
 $numberOfPictures = count($result);
