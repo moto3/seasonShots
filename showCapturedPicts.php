@@ -31,7 +31,7 @@ echo "-->";
 echo "</style>";
    echo "</head>";
   echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の撮影画像：".$numberOfPictures."枚ありました<p>";
-for ($i = $numberOfPictures -1; $i > -1; $i--) {
+for ($i =  0; $i < $numberOfPictures; $i++) {
     echo "<a href=";
     echo $result[$i];
     echo ">";
