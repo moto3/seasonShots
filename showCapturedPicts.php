@@ -7,10 +7,12 @@ $fileList = scandir($dir);
 foreach($fileList as $value ){
   $file = $dir . $value;
   if (!is_file($file)) continue;
-  $modifiedDate = date("Ymd", filemtime($file));  //取得したファイルの変更日時を取得
+  if (strpos ($file,".jpg") != false) { //文字列に".jpg"が含まれるなら
+      $modifiedDate = date("Ymd", filemtime($file));  //取得したファイルの変更日時を取得
   if($modifiedDate == $reqDate){ //指定日に一致するなら
           echo $file . "was last modified at: " . $modifiedDate .PHP_EOL;
           $result[] = $file;
+    }
   }
 }
 
