@@ -30,7 +30,7 @@ echo "id.pictureBox {width: 90%;}";
 echo "-->";
 echo "</style>";
    echo "</head>";
-  echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の撮影画像：".$numberOfPictures."枚ありました<p>";
+  echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の撮影画像：".$numberOfPictures."枚ありました。新しい写真から順に表示します<p>";
 for ($i =  0; $i < $numberOfPictures; $i++) {
     echo "<a href=";
     echo $result[$i];
