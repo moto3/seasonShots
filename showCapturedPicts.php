@@ -36,9 +36,9 @@ echo "</style>";
 for ($i = $numberOfPictures -1; $i > -1; $i--) {
     echo "<a href=";
     echo $result[$i];
-    echo date("Ymd - Hi", filemtime($result[$i]));
     echo ">";
     echo substr($result[$i], -16, 4)."年".substr($result[$i], -12, 2)."月".substr($result[$i], -10, 2)."日――".substr($result[$i], -8, 2)."時".substr($result[$i], -6, 2)."分の画像";
+    echo date("  \/Ymd - Hi", filemtime($result[$i]));
     echo "<img src=".$result[$i]." width = '95%'></a>";
     echo "<br><br>";
  }
