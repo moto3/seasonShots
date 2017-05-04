@@ -1,7 +1,7 @@
 <?php echo "<h1>電源投入時テスト画像一覧　　<button type='button' onclick='history.back()'>元のページに戻る</button></h1>";
 $reqDate = $_POST['showdate']; //return date example:20170502
 
-$dir = dirname(__FILE__) . '/daily_timelapse/';
+$dir = './daily_timelapse/';
 
 $fileList = scandir($dir);
 foreach($fileList as $value ){
