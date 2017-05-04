@@ -10,9 +10,8 @@ foreach($fileList as $value ){
   $modifiedDate = date("Ymd", filemtime($file));  //取得したファイルの変更日時を取得
   if($modifiedDate == $reqDate){ //指定日に一致するなら
           echo $file . "was last modified at: " . $modifiedDate .PHP_EOL;
-
+          $result[] = $file;
   }
-$result[] = $file;
 }
 
 $numberOfPictures = count($result);
@@ -23,7 +22,7 @@ echo "id.pictureBox {width: 90%;}";
 echo "-->";
 echo "</style>";
    echo "</head>";
-  echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の電源投入時テスト画像：".$numberOfPictures."枚ありました<p>".PHP_EOL;
+  echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の電源投入時テスト画像：".$numberOfPictures."枚ありました<p>";
 for ($i = $numberOfPictures -1; $i > -1; $i--) {
     echo "<a href=";
     echo $result[$i];
