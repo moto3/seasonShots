@@ -4,7 +4,7 @@ $reqDate = "20170502"; //just for test
 
 $dir = dirname(__FILE__) . '/daily_timelapse/';
 
-$fileList = scandir($fileList);
+$fileList = scandir($dir);
 foreach($fileList as $value ){
   $file = $dir . $value;
   if (!is_file($file)) continue;
