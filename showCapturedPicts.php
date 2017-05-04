@@ -9,8 +9,9 @@ foreach($fileList as $value ){
   if (!is_file($file)) continue;
   if (strpos ($file,".jpg") != false) { //文字列に".jpg"が含まれるなら
       $modifiedDate = date("Ymd", filemtime($file));  //取得したファイルの変更日時を取得
+      $modTime = date("Ymd - His", filemtime($file));
   if($modifiedDate == $reqDate){ //指定日に一致するなら
-          echo $file . "was last modified at: " . $modifiedDate . "<br>".PHP_EOL;
+          echo $file . "was last modified at: " . $modTime . "<br>".PHP_EOL;
           $result[] = $file;
     }
   }
