@@ -1,4 +1,4 @@
-<?php echo "<h1>電源投入時テスト画像一覧　　<button type='button' onclick='history.back()'>元のページに戻る</button></h1>";
+<?php echo "<h1>指定日の画像一覧　　<button type='button' onclick='history.back()'>元のページに戻る</button></h1>";
 $reqDate = $_POST['showdate']; //return date example:20170502
 
 $dir = './daily_timelapse/';
@@ -12,6 +12,7 @@ foreach($fileList as $value ){
       $modTime = date("Ymd - Hi", filemtime($file));
   if($modifiedDate == $reqDate){ //指定日に一致するなら
           echo $file . "was last modified at: " . $modTime . "<br>".PHP_EOL;
+          //デバグのためにファイル名と実際の変更日時を表示させる
           $result[] = $file;
     }
   }
@@ -19,7 +20,7 @@ foreach($fileList as $value ){
 array_multisort(
   array_map( 'filemtime', $result ),
   SORT_NUMERIC,
-  SORT_DESC,
+  SORT_DESC,  //これで新しい写真から順番に表示
   $result
 );
 
@@ -31,10 +32,11 @@ echo "id.pictureBox {width: 90%;}";
 echo "-->";
 echo "</style>";
    echo "</head>";
-  echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の電源投入時テスト画像：".$numberOfPictures."枚ありました<p>";
+  echo "<body><p>".substr($reqDate, 0, 4)."年".substr($reqDate, 4, 2)."月".substr($reqDate, 6, 2)."日――の撮影画像：".$numberOfPictures."枚ありました<p>";
 for ($i = $numberOfPictures -1; $i > -1; $i--) {
     echo "<a href=";
     echo $result[$i];
+    echo date("Ymd - Hi", filemtime($result[$i]));
     echo ">";
     echo substr($result[$i], -16, 4)."年".substr($result[$i], -12, 2)."月".substr($result[$i], -10, 2)."日――".substr($result[$i], -8, 2)."時".substr($result[$i], -6, 2)."分の画像";
     echo "<img src=".$result[$i]." width = '95%'></a>";
