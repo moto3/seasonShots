@@ -1,4 +1,5 @@
-<?php echo "<h1>指定日の画像一覧　　<button type='button' onclick='history.back()'>元のページに戻る</button></h1>";
+<?php
+echo "<h1>指定日の画像一覧　　<button type='button' onclick='history.back()'>元のページに戻る</button></h1>";
 $reqDate = $_POST['showdate']; //return date example:20170502
 
 $dir = './daily_timelapse/';
