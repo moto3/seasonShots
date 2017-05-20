@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<html>
+    <head>
+    <meta charset='utf-8'>
+    
+     <meta name="viewport" content="width=900">
+<!--
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+HTMLからJSを使って外部のPHPプログラムを呼び出し、結果をHTMLのJSで受け取る方法を編み出した
+DOMに納めてデータ交換を行う｡
+JSで新規にTextnodeを作ってそこを経由して情報交換しようと思ったが、どうしてもうまく行かない    
+-->
+<script type="text/javascript"><!--
+   // 切替秒数(ミリ秒)
+   var inttime = 400;
+   var fileList = []; //declare fileList as global val
+   var timeList = []; //declare shooting time list as global val
+    PLAYING = 1  //slideshow is on going
+    STOPPED = -1 //slideshow is STOPPED
+
+   //スライダーバーにより、画面リフレッシュ間隔を任意にセット
+
+    function setinttime() {  //スライダーを動かしたことによるインターバル時間再セット
+        inttime = document.getElementById("inttimeValue").value;
+        if (togglePlayButton == PLAYING){ //もし、スライドショー再生中なら、ここでリアルタイムに再生スピードを更新
+                clearInterval(slideid);
+                slideid = setInterval("runSlide()",inttime);
+        }
+    }   
+   // 当日の日付を取得する関数。y+m+dで動くはずだが、
+   //なぜか、数値の和になってしまうので明示的にString()を使って結合した｡
+   function pDate(){
+            dt = new Date();
+            y = dt.getFullYear();
+            m  = dt.getMonth() + 1;
+             if (m < 10) { m = "0" + m; };
+            d  = dt.getDate();
+            if (d < 10) { d = "0" + d; };
+            document.getElementById("datepicker").value=String(y)+String(m)+String(d);
+        }
+
+//関数：サーバー内のファイルをスキャンして、パターンにマッチするファイルをリストする
+    function getFileList(){
+        $.ajax({
+        type: "GET",
+        url: "getFileList.php",
+        cache: false,
+        data: "showDate=" + document.getElementById("datepicker").value,
+        success: function(html){
+        generateFileListArray(html);
+        }
+        });
+
+    }
+//関数：同一時刻の写真を横に串刺しして探す
+//http://feye.fnetin.com/?p=331
+//に解説がある
+    function getFileListHourly(){
+        var data = { showHour : document.getElementById("showHour").value, beginDate : document.getElementById("datepicker_1").value };
+        $.ajax({
+        type: "GET",
+        url: "getFileListHourly_v5.php",
+        cache: false,
+        data: data,
+        success: function(html){
+        generateFileListArray(html);
+        }
+        });
+    }
+    // 関数5・一番大事な関数、サーバー内のファイルリストを配列に代入
+    //カンマ区切りの文字列を入れるとして読み込む。split(",")を使う方法
+    function generateFileListArray() {
+        fileList = document.getElementById('id_fileList').textContent.split(",");
+        if (fileList[0] == ""){
+            document.getElementById('timeStamp').innerHTML = "指定の撮影データはありません";
+            stopshow();
+        } else {
+            document.getElementById('timeStamp').innerHTML = "指定の撮影データが" + fileList.length + "枚あります";
+        }
+        return(fileList);
+    }
+
+   // 関数１★指定番号の画像に差し替える関数（numを2桁表記ににするにはsliceを使う）
+   function showimage(imgcount) {
+      document.getElementById('imageArea').src = fileList[imgcount];
+      formatDate = generateDateFormat(fileList[imgcount]);
+      document.getElementById('timeStamp').innerHTML = formatDate;
+   }
+
+   //年月日を生成
+   function generateDateFormat(dateString){
+       formatDate = dateString.slice(-16,-12)+"年"+dateString.slice(-12,-10)+"月"+dateString.slice(-10,-8)+"日――"+dateString.slice(-8,-6)+"時"+dateString.slice(-6,-4)+"分";
+       return (formatDate);
+}
+
+   // 関数２★0番画像から順に表示させる関数
+   var imgcount=0;
+   function runSlide() {
+      if( imgcount >= fileList.length ) {
+         imgcount = 0;
+      }
+      showimage(imgcount);
+      imgcount++;
+   }
+
+   // 関数３★スライドショーを開始する関数
+   var slideid;
+   var togglePlayButton = STOPPED;
+        function togglePlay(){
+
+            if ( togglePlayButton == STOPPED){
+                togglePlayButton = togglePlayButton*-1;
+                document.getElementById("button_start").src="./stop.png";
+                }
+                else {
+                      togglePlayButton = togglePlayButton*-1;
+                      document.getElementById("button_start").src="./start.png";
+                }
+            }
+
+
+   function startshow() {
+        if(fileList[0] != ""){  //ファイルが存在するなら
+            if (togglePlayButton == STOPPED){
+                slideid = setInterval("runSlide()",inttime);
+                togglePlay();
+                }  else{
+                    stopshow();
+                 }
+            } else {
+                stopshow();
+                document.getElementById('timeStamp').innerHTML = "残念ながら指定の撮影データはありませんでした";
+
+            }
+   }
+
+
+   // 関数４★スライドショーを停止する関数
+   function stopshow() {
+      clearInterval(slideid);
+        document.getElementById("button_start").src="./start.png";
+        togglePlayButton = STOPPED;
+   }
+// --></script>
+<style type="text/css"><!--
+  /* スライドショー表示領域 */
+
+   div.slideshow{  
+   font-size: 12pt; color:blue; 
+     border: gray 0px solid;
+      position: absolute;
+      top:0px;
+      left:0px;
+      width:900px;
+      height:580px;
+      z-index: 0;
+   }
+
+div.slideshow #myDate{
+     text-align: left;
+     font-size:12pt;
+     width:900px;
+     height:10px;
+     position: absolute;
+     top:1px;
+     left:0px;
+     color: blue;
+     z-index: 1;
+}
+
+   div.class_imageArea {
+       text-align: center;
+       font-size:12pt;
+       position:absolute;
+       top:100px;
+       width:900px;
+       height:495px;
+   }
+
+   div.class_imageArea #imageArea{
+       text-align: center;
+       font-size:12pt;
+       position:absolute;
+       top:0px;
+       left:0;
+       width:900px;
+   }
+
+   
+ div.class_imageArea #timeStamp{
+     text-align: left;
+     font-size:12pt;
+     position: absolute;
+     top:40px;
+     left:90px;
+     color: #E00000;
+     z-index: 3;
+}
+    #button_start{
+    position: absolute;
+     top:20px;
+     left:20px;
+     width:60px;
+    z-index: 2;
+}
+
+
+div#id_fileList{
+    position:absolute;
+    top:800px;
+    display:none;
+}
+div.slideshow .gobackButton{
+    font-size:12pt;
+}
+
+.ui-content {
+    width:500px;
+    position:absolute;
+    top:500px;
+    left:20px;
+}
+
+table#hourSlice{
+    border: gray 1px solid;
+    width:210px;
+    height:10px;
+    background-color:#CCFFff;"
+}
+table#controlPanel{
+    width:900px;
+    height:30px;
+    border: gray 1px solid;
+
+}
+#box_datepicker{
+    border: gray 1px solid;
+    width:140px;
+    background-color:#CCFFff;
+}
+
+#datepicker{
+    width:110px;
+
+}
+
+--></style>
+
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/ui-lightness/jquery-ui.css">
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <title>柏たなか・成長記録スライドショー</title>
+    </head>
+        <body onload="pDate();getFileList()">
+            
+        <div class="slideshow">
+            <div class="inputDate" id = "myDate"> 
+                <table  id="controlPanel">
+                <tr>
+                <td id="box_datepicker"><input name="showDate" id="datepicker" type="text" onChange="getFileList()" >表示日付を指定</td>
+                <td>
+                    <table id="hourSlice">
+                    <th>開始日</th><th>時刻で横切</th><tr><td >
+                        <input name="showDate_1" id="datepicker_1" type="text" value="20170420" onChange="getFileListHourly()" ></td>
+                    <td type="text">
+                    <select name="showHour" id="showHour" onChange="getFileListHourly()">
+                        <option value="選択" selected>選択
+                        <option value="10">10時
+                        <option value="11">11時
+                        <option value="12" >12時
+                        <option value="13">13時
+                        <option value="14">14時    
+                    </select></td></tr></table></td>
+                <td style="font-size:18pt;">柏たなかスライドショー<br>田んぼの成長記録</td>
+                <td><button type='button' class='gobackButton' onclick='history.back()'>トップページに戻る</button></td>
+                </tr>
+                </table> 
+             </label></div>  </div>   
+        <div class="class_imageArea" id="id_imageArea">
+            <img src="./img/mochimugi_Camera.jpg" id="imageArea" alt="写真表示エリア"/>
+        
+               <input type="image" src="./start.png" onclick="startshow()" id="button_start">
+                 <div id="timeStamp"> ［タイムスタンプ表示エリア］ </div>
+                    <div class="ui-content">
+                        <div> 再生スピードを設定（msec）：
+                            <input type="range" id="inttimeValue" value="500" min="300" max="2000" onChange="setinttime()">
+                        </div>
+                    </div>
+        </div>
+    <script>
+      (function(){
+        $("#datepicker_1").datepicker({
+            dateFormat: 'yymmdd',
+            monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            dayNames: ['日', '月', '火', '水', '木', '金', '土'],
+            dayNamesMin: ['日', '月', '火', '水', '木', '金', '土']
+        });
+        })();
+      (function(){
+        $("#datepicker").datepicker({
+            dateFormat: 'yymmdd',
+            monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            dayNames: ['日', '月', '火', '水', '木', '金', '土'],
+            dayNamesMin: ['日', '月', '火', '水', '木', '金', '土']
+        });
+        })();
+        </script>
+       
+       
+            <div id="id_fileList">ファイルリストエリアです。非表示にします</div>
+          
+
+        </body>
+</html>
