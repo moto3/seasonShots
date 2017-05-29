@@ -257,13 +257,13 @@ table#controlPanel{
 
     <title>柏たなか・成長記録スライドショー</title>
     </head>
-        <body onload="pDate();getFileList()">
+        <body onload="pDate();getAllFileList()">
             
         <div class="slideshow">
             <div class="inputDate" id = "myDate"> 
                 <table  id="controlPanel">
                 <tr>
-                <td id="box_datepicker"><input name="showDate" id="datepicker" type="text" onChange="getFileList()" >表示日付を指定</td>
+                <td id="box_datepicker"><input name="showDate" id="datepicker" type="text" onChange="getAllFileList()" >表示日付を指定</td>
                 <td>
                     <table id="hourSlice">
                     <th>開始日</th><th>時刻で横切</th><tr><td >
