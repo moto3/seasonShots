@@ -45,7 +45,7 @@ JSで新規にTextnodeを作ってそこを経由して情報交換しようと�
     function getFileList(){
         $.ajax({
         type: "GET",
-        url: "getFileList.php",
+        url: "getAllFileList.php",
         cache: false,
         data: "showDate=" + document.getElementById("datepicker").value,
         success: function(html){
