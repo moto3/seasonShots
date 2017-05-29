@@ -10,7 +10,7 @@ $reqDate = $_GET['showDate'];
 array_multisort(
   array_map( 'filemtime', $result ),
   SORT_NUMERIC,
-  SORT_DESC,  //これで新しい写真から順番に表示
+  SORT_ACSD,  //これで古い写真から順番に表示
   $result
 );
  //json化してデータを返す
