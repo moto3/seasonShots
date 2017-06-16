@@ -1,7 +1,7 @@
 <?php 
 header('Content-type: text/javascript; charset=utf-8');
 
-$imageDirectory = 'daily_timelapse/';
+$imageDirectory = 'daily_timelapseSandbox/';
 $reqDate = $_GET['showDate'];
   foreach(glob(rtrim($imageDirectory."*".$reqDate."*.jpg")) as $file) {
     $result[] = $file;
