@@ -6,7 +6,7 @@ header('Content-type: text/javascript; charset=utf-8');
 $reqHour = $_GET['showHour'];
 $beginDate = $_GET['beginDate'];
 $result = array();
-$imageDirectory = 'daily_timelapse_sandBox/';
+$imageDirectory = 'daily_timelapseSandbox/';
 
   foreach(glob(rtrim($imageDirectory."*".$reqHour."00.jpg")) as $file) {
     $result[] = $file;
