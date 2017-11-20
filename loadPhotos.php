@@ -1,5 +1,9 @@
 <?php
   $dir = 'daily_timelapse/';
+  if (!file_exists($dir)) {
+    die('Error: Directory not found.');
+  }
+
   $dh  = opendir($dir);
   $files = array();
   while (false !== ($fileName = readdir($dh))) {

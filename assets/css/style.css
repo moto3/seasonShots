@@ -1,0 +1,143 @@
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background-color:#ccc;
+}
+#main-wrapper {
+  margin:auto;
+  max-width:1024px;
+  background-color: #fff;
+}
+div.title {
+  text-align:center;
+  margin-bottom:0;
+  border:1px solid #ccc;
+}
+div.slideshow {
+  position: relative;
+  font-size: 12pt; color:blue;
+  border-top:1px solid #CCC;
+  border-bottom:1px solid #CCC;
+}
+div.slideshow img{
+  display: block;
+  width:100%;
+}
+#timeStamp{
+  text-align: left;
+  font-size:12pt;
+  position: absolute;
+  top:40px;
+  left:90px;
+  color: #E00000;
+}
+#button_start{
+  position: absolute;
+  top:20px;
+  left:20px;
+  width:60px;
+  height:60px;
+  background-image:url('../../start.png');
+  background-size:100% auto;
+  cursor:pointer;
+}
+#button_start.stop {
+  background-image:url('../../stop.png');
+}
+
+div.slideshow #myDate{
+  text-align: left;
+  position: absolute;
+  top:0;
+  font-size:12pt;
+  width:900px;
+  height:10px;
+  color: blue;
+  z-index: 1;
+}
+nav > div {
+  padding:1%;
+}
+label {
+  display:block;
+  font-size:0.8em;
+}
+.button_home {
+  background-color:#ccc;
+  padding:2px;
+  color:#666;
+  border-radius:6px;
+}
+
+div#id_fileList{
+    position:absolute;
+    top:800px;
+    display:none;
+}
+
+.ui-content {
+    width:500px;
+    position:absolute;
+    top:500px;
+    left:20px;
+}
+
+#slider-wrapper {
+  padding:8px 0 16px 0;
+  border-bottom:1px solid #ccc;
+}
+#slider {
+  margin:0 0.6em;
+  border-radius: 0;
+}
+#slider-gauge {
+  font-size:9px;
+  padding:0 1px 10px 1px;
+}
+#slider-gauge .end{
+  float:right;
+}
+#custom-range {
+  background-color:#ffb300;
+}
+#custom-handle-min, #custom-handle-max {
+  top:-.5em;
+  width:0.6em;
+  height:1.6em;
+}
+#custom-handle-min {
+  margin-left: -.6em;
+  border-radius: 4px 0 0 4px;
+}
+#custom-handle-max {
+  margin-left: 0em;
+  border-radius: 0 4px 4px 0;
+}
+
+#speed > i {
+  width:5%;
+  color:#666;
+}
+#speed > i:nth-of-type(1){
+  text-align:right;
+}
+#speed > div{
+  display:inline-block;
+  width:88%;
+  margin:0 1%;
+}
+
+
+/* FIXES */
+.pure-form input[type=text], .pure-form select {
+  width:100%;
+}
+.pure-form input[type=text] {
+  padding:.3em .6em;
+}
+div#ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
+  background-position: center top -18px;
+}

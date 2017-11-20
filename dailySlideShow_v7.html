@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>柏たなか・成長記録スライドショー</title>
+<!--
+HTMLからJSを使って外部のPHPプログラムを呼び出し、結果をHTMLのJSで受け取る方法を編み出した
+DOMに納めてデータ交換を行う｡
+JSで新規にTextnodeを作ってそこを経由して情報交換しようと思ったが、どうしてもうまく行かない    
+-->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/assets/js/datepicker-ja.js"></script>
+    <script src="https://use.fontawesome.com/a87ac8a19a.js"></script>
+
+  </head>
+  <body>
+    <div id="main-wrapper">      
+      <nav class="pure-g pure-form">
+        <div class="pure-u-1 title">
+          <a href="./index.html" class="button_home"><i class="fa fa-home fa-lg"></i></a> 柏たなかスライドショー 田んぼの成長記録（v7）
+        </div>
+        <div class="pure-u-3-5">
+          <label>日付で検索</label>
+          <input name="showDate" class="datepicker" type="text" onChange="searchDate()" >
+        </div>
+        <div class="pure-u-2-5">
+          <label>時刻で横切</label>
+          <select name="showHour" id="showHour" onChange="getFileListHourly()">
+            <option value="選択">選択</option>
+            <option value="10">10時</option>
+            <option value="11">11時</option>
+            <option value="12">12時</option>
+            <option value="13">13時</option>
+            <option value="14">14時</option>
+          </select>
+          </form>
+        </div>
+        
+      </nav>
+      <div class="pure-g">
+        <div class="slideshow pure-u">
+          <img src="./img/mochimugi_Camera.jpg" id="imageArea" alt="写真表示エリア"/>
+          <div id="button_start"></div>
+          <div id="timeStamp">［タイムスタンプ表示エリア］</div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1" id="slider-wrapper">
+          <div id="slider-gauge">
+            <span class="start"></span>
+            <span class="end"></span>
+          </div>
+          <div id="slider">
+            <div id="custom-range" class="ui-slider-range"></div>
+            <div id="custom-handle-min"  class="ui-slider-handle"></div>
+            <div id="custom-handle-max" class="ui-slider-handle"></div>
+            <div id="custom-handle" class="ui-slider-handle"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-12-24" id="speed">
+          <label>再生スピード</label>
+          <i class="fa fa-play"></i><div id="speed"></div><i class="fa fa-forward fa-lg"></i>
+        </div>
+        <div class="pure-u-12-24">
+          &nbsp;
+        </div>
+      </div>
+    <div id="id_fileList">ファイルリストエリアです。非表示にします</div>
+          
+  </div>
+  <script src="./assets/js/functions.js"></script>
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>
